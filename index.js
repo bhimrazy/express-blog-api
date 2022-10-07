@@ -1,4 +1,7 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 import apiRouter from './src/routes/api.js';
 
 // Constants
@@ -12,6 +15,24 @@ app.use(express.urlencoded({ extended: true }))
 
 // Serving static assets
 app.use(express.static('public'))
+
+//Swagger Configuration  
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: 'Express API',
+            version: '1.0.0'
+        }
+    },
+    apis: ['api.js'],
+}
+
+const specs = swaggerJsdoc(swaggerOptions);
+app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs)
+);
 
 app.get('/', (req, res) => {
     res.status(200).send(
