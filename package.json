@@ -1,0 +1,24 @@
+{
+  "name": "express-app-with-docker-setup",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhimrazy/express-app-with-docker-setup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhimrazy/express-app-with-docker-setup/issues"
+  },
+  "homepage": "https://github.com/bhimrazy/express-app-with-docker-setup#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
