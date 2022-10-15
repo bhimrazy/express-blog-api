@@ -3,6 +3,7 @@ dotenv.config()
 import express from 'express';
 import apiRouter from './src/routes/api.js';
 import mongoose from 'mongoose';
+import morgan from 'morgan';
 
 // Constants
 const PORT = process.env.PORT || 3000;
@@ -22,10 +23,11 @@ mongoose.connect(process.env.DATABASE_URL, {
 // App
 const app = express();
 // parse request bodies (req.body)
-//middleware
 app.use(express.json());
 // Serving static assets
-// app.use(express.static('public'))
+app.use(express.static('public'))
+// logger
+app.use(morgan('combined'))
 
 // API Routes
 app.get('/', (req, res) => {
@@ -46,4 +48,4 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+console.log(`Server is running on port ${PORT}`);
