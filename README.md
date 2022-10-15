@@ -78,4 +78,5 @@ show dbs
 show users
 use db_name
 mongo --port 27017 -u username -p password --authenticationDatabase mydbone
+express-jsdoc-swagger
  -->
