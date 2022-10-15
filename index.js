@@ -4,7 +4,7 @@ import express from 'express';
 import apiRouter from './src/routes/api.js';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
-
+import cors from 'cors';
 // Constants
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
@@ -22,8 +22,11 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 // App
 const app = express();
+app.use(cors());
 // parse request bodies (req.body)
 app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 // Serving static assets
 app.use(express.static('public'))
 // logger
@@ -49,3 +52,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, HOST);
 console.log(`Server is running on port ${PORT}`);
+console.log(`Running on http://${HOST}:${PORT}`);
