@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081

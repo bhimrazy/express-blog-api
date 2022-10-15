@@ -5,29 +5,35 @@
 # Express Docker App 
 This repo helps you to get started with ExpressJs in docker Environment.
 
-
 ## Docker
-  
+
 - Build Command
+
   ```bash
       docker build . -t your-name/express-docker-app
 
   ```
+
 - Run Command
+
   ```bash
       docker run -p 8000:8080 -d your-name/express-docker-app
 
-  ``` 
+  ```
+
 - List Containers
+
   ```bash
       docker ps
 
   ```
+
 - Stop Command
+
   ```bash
       docker stop <container_id>
 
-  ``` 
+  ```
 
 ## Run Locally
 
@@ -61,9 +67,15 @@ Start the server
 
 [Dockerizing a Node.js web app](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
 
-  
 ## License
 
 [MIT](https://github.com/bhimrazy/express-app-with-docker-setup/blob/master/LICENSE)
 
-  
+<!-- docker exec -it <container-id> bash -->
+<!--
+mongosh
+show dbs
+show users
+use db_name
+mongo --port 27017 -u username -p password --authenticationDatabase mydbone
+ -->
