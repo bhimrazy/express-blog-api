@@ -10,7 +10,7 @@ import express, {
 
 import morgan from "morgan";
 import cors from "cors";
-import { connectDB } from "./src/config/db";
+import { connectDB } from "./src/configs/db";
 import apiRouter from "./src/routes/api";
 // Constants
 const PORT = process.env.PORT || 3000;
