@@ -1,71 +1,72 @@
 <p align="center">
-  <img width="250" height="120" src="https://hasura.io/blog/content/images/downloaded_images/an-exhaustive-guide-to-writing-dockerfiles-for-node-js-web-apps-bbee6bd2f3c4/1-4KhmpXFJ_Etczs6awRnAbg.png">
+  <img height="400" width="auto" src="https://user-images.githubusercontent.com/46085301/196043714-8ac5ad0d-1286-4ab6-aa6b-c1e4cdccf3d0.png">
 </p>
   
-# Express Docker App 
-This repo helps you to get started with ExpressJs in docker Environment.
+# A Blog REST API App using ExpressJs, MongoDB, NodeJs and Typescript.
+This repo helps you to get started with ExpressJs, MongoDB, NodeJs and Typescript in docker Environment.
 
-## Docker
+## Setup and Run Locally with or without using Docker
 
-- Build Command
-
-  ```bash
-      docker build . -t your-name/express-docker-app
-
-  ```
-
-- Run Command
+Commands
 
   ```bash
-      docker run -p 8000:8080 -d your-name/express-docker-app
-
+      # clone github repo
+      $ git clone https://github.com/bhimrazy/express-blog-api
+      $ cd express-blog-api
+      $ cp .env.example .env
+      
+      # Run without using docker
+      # SET DATABASE_URL
+      $ npm install
+      $ npm run dev
+      
+      # Run with docker      
+      # start containers
+      $ docker-compose up -d
+      # start containers
+      $ docker-compose up -d
+      # stop containers
+      $ docker-compose down
   ```
 
-- List Containers
+## API Reference
 
-  ```bash
-      docker ps
+#### Get Home URL
 
-  ```
-
-- Stop Command
-
-  ```bash
-      docker stop <container_id>
-
-  ```
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/bhimrazy/express-app-with-docker-setup
+```http
+  GET /api/v1/
 ```
 
-Go to the project directory
+#### Register User
 
-```bash
-  cd express-app-with-docker-setup
+```http
+  POST /api/v1/register
 ```
 
-Install dependencies
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+|  `name`   | `string` | **Required**. Your Name    |
+|  `email`  | `string` | **Required**. Your Email   |
+|`password` | `string` | **Required**. Your Password|
 
-```bash
-  npm install
+#### Login User
+
+```http
+  POST /api/v1/login
 ```
 
-Start the server
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+|  `email`  | `string` | **Required**. Your Email   |
+|`password` | `string` | **Required**. Your Password|
 
-```bash
-  npm run start
+#### Get All Blogs
+
+```http
+  GET /api/v1/blogs/
 ```
-
-[![App Screenshot](https://i3.ytimg.com/vi/SgztwJYj1Es/maxresdefault.jpg)](https://www.youtube.com/watch?v=SgztwJYj1Es)
-
 ## References
 
-[Dockerizing a Node.js web app](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
 
 ## License
 
@@ -79,8 +80,9 @@ show users
 use db_name
 mongo --port 27017 -u username -p password --authenticationDatabase mydbone
 express-jsdoc-swagger
- -->
 
 https://blog.appsignal.com/2022/08/17/build-a-crud-app-with-nodejs-and-mongodb.html
 https://blog.appsignal.com/2022/09/14/secure-your-nodejs-app-with-json-web-tokens.html
 https://jayeshchoudhary.hashnode.dev/how-to-easily-validate-request-data-using-express-validator-in-nodejs
+ -->
+
