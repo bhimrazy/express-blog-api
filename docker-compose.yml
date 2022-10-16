@@ -1,13 +1,18 @@
 version: '3.7'
-
 services:
-
+  node:
+    restart: always
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/code
   mongo:
     image: mongo
-    restart: always
     ports:
-      - '27017:27017'
-
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
   mongo-express:
     image: mongo-express
     restart: always
@@ -15,3 +20,5 @@ services:
       - mongo
     ports:
       - 8081:8081
+volumes:
+  mongodb:
