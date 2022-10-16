@@ -4,8 +4,8 @@ import {
   getAllUsers,
   registerUser,
   loginUser,
-} from "../controllers/userController.js"
-import { verifyUserToken } from "../middlewares/verifyUserToken.js";
+} from "../controllers/userController";
+import { verifyUserToken } from "../middlewares/verifyUserToken";
 
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
