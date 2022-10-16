@@ -30,7 +30,7 @@ export const createBlog = async (req: Request, res: Response) => {
     }
 
     const blog = await blogService.createBlog(req.body);
-    res.json({ data: blog, status: "success" });
+    res.json({ data: blogSerializer(blog), status: "success" });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

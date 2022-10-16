@@ -10,7 +10,13 @@ const Serializer = (dict: any, fields: String[]) => {
 const userFields: String[] = ["name", "email"];
 export const userSerializer = (user: any) => Serializer(user, userFields);
 
-const blogFields: String[] = ["_id", "title", "description", "created_at"];
+const blogFields: String[] = [
+  "_id",
+  "title",
+  "description",
+  "createdAt",
+  "updatedAt",
+];
 export const blogSerializer = (blog: any) => Serializer(blog, blogFields);
 export const blogsSerializer = (blogs: any) => {
   var data: any[] = [];
