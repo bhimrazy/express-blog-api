@@ -28,18 +28,38 @@ Commands
       # stop containers
       $ docker-compose down
   ```
+## Directory Structure
+```
+.
+├── dist/                                # Build files
+├── public/                              # Contains static files
+├── src/                                 # All 
+│   ├── configs/                         # Contains all the configurations
+│   ├── models/                          # Contains all the database schema and models
+│   ├── services/                        # Contains all the services
+│   ├── controllers/                     # Contains all the controllers
+│   ├── middlewares/                     # Contains all the middlewares
+│   ├── validators/                      # Contains all the request validators
+│   ├── serializers/                     # Contains all the serializers
+│   └── routes/                          # Contains all the routes
+├── tsconfig.json                        # Typescript Config
+├── index.ts                             # Index file
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
 ## API Reference
 
 #### Get Home URL
 
-```http
+```
   GET /api/v1/
 ```
 
 #### Register User
 
-```http
+```
   POST /api/v1/register
 ```
 
@@ -51,7 +71,7 @@ Commands
 
 #### Login User
 
-```http
+```
   POST /api/v1/login
 ```
 
@@ -62,7 +82,7 @@ Commands
 
 #### Get All Blogs
 
-```http
+```
   GET /api/v1/blogs/
 ```
 ## References
