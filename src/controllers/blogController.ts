@@ -1,11 +1,18 @@
 import { Request, Response } from "express";
 import * as blogService from "../services/blogService";
 import { validationResult } from "express-validator";
+import { blogSerializer, blogsSerializer } from "../serializers/serializers";
 
+type Blog = {
+  _id: String;
+  title: String;
+  description: String;
+  created_at: String;
+};
 export const getAllBlogs = async (req: Request, res: Response) => {
   try {
     const blogs = await blogService.getAllBlogs();
-    res.json({ data: blogs, status: "success" });
+    res.json({ data: blogsSerializer(blogs), status: "success" });
   } catch (err: any) {
     res.status(500).json({ error: err?.message });
   }
@@ -32,7 +39,7 @@ export const createBlog = async (req: Request, res: Response) => {
 export const getBlogById = async (req: Request, res: Response) => {
   try {
     const blog = await blogService.getBlogById(req.params.id);
-    res.json({ data: blog, status: "success" });
+    res.json({ data: blogSerializer(blog), status: "success" });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

@@ -4,6 +4,7 @@ import User from "../models/user";
 import * as userService from "../services/userService";
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
+import { userSerializer } from "../serializers/serializers";
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
@@ -24,7 +25,7 @@ export const registerUser = async (req: Request, res: Response) => {
     const hash = await bcrypt.hash(user.password, 10);
     user.password = hash;
     const reg_user = await userService.createUser(req.body);
-    res.json({ data: reg_user, status: "success" });
+    res.json({ data: userSerializer(reg_user), status: "success" });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
@@ -33,9 +34,11 @@ export const loginUser = async (req: Request, res: Response) => {
   try {
     const user = req.body;
     //check if user exists
-    const foundUser: any = await User.findOne({ email: user.email });
+    const foundUser = await User.findOne({
+      email: user.email,
+    });
     if (!foundUser) {
-      return res.status(400).send("Invalid email or password");
+      return res.status(400).send({ message: "Invalid email or password" });
     }
     //check if password is correct
     const isPasswordValid = await bcrypt.compare(
@@ -43,13 +46,13 @@ export const loginUser = async (req: Request, res: Response) => {
       foundUser.password
     );
     if (!isPasswordValid) {
-      return res.status(400).send("Invalid email or password");
+      return res.status(400).send({ message: "Invalid email or password" });
     }
     //create token
     const token = jwt.sign({ user }, process.env.JWT_SECRET!, {
       expiresIn: "1h",
     });
-    res.json({ token });
+    res.json({ token, user: userSerializer(foundUser) });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
