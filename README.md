@@ -83,3 +83,4 @@ express-jsdoc-swagger
 
 https://blog.appsignal.com/2022/08/17/build-a-crud-app-with-nodejs-and-mongodb.html
 https://blog.appsignal.com/2022/09/14/secure-your-nodejs-app-with-json-web-tokens.html
+https://jayeshchoudhary.hashnode.dev/how-to-easily-validate-request-data-using-express-validator-in-nodejs

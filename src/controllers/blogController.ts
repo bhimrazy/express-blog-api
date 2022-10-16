@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as blogService from "../services/blogService";
+import { validationResult } from "express-validator";
 
 export const getAllBlogs = async (req: Request, res: Response) => {
   try {
@@ -12,6 +13,15 @@ export const getAllBlogs = async (req: Request, res: Response) => {
 
 export const createBlog = async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+    // if there is error then return Error
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        errors: errors.array(),
+      });
+    }
+
     const blog = await blogService.createBlog(req.body);
     res.json({ data: blog, status: "success" });
   } catch (err: any) {
