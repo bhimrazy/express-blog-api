@@ -1,5 +1,5 @@
 const Serializer = (dict: any, fields: String[]) => {
-  var data = {};
+  let data = Object();
   fields.forEach((key: any) => {
     const k: string = key;
     const v: string = dict[key];
