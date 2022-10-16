@@ -11,7 +11,7 @@ import { verifyUserToken } from "../middlewares/verifyUserToken";
 import {
   createBlogDataValidator,
   updateBlogDataValidator,
-} from "../validators/blog";
+} from "../validators/blog.validator";
 
 blogRouter
   .route("/")

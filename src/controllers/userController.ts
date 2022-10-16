@@ -3,11 +3,23 @@ import jwt from "jsonwebtoken";
 import User from "../models/user";
 import * as userService from "../services/userService";
 import { Request, Response } from "express";
+import { validationResult } from "express-validator";
+
 export const registerUser = async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+    // if there is error then return Error
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        errors: errors.array(),
+      });
+    }
     const user = req.body;
     if (!user.email || !user.password) {
-      return res.status(400).send("Username and password are required.");
+      return res
+        .status(400)
+        .send({ message: "Username and password are required." });
     }
     const hash = await bcrypt.hash(user.password, 10);
     user.password = hash;

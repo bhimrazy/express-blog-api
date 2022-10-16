@@ -6,8 +6,12 @@ import {
   loginUser,
 } from "../controllers/userController";
 import { verifyUserToken } from "../middlewares/verifyUserToken";
+import {
+  createUserDataValidator,
+  loginUserDataValidator,
+} from "../validators/user.validator";
 
-userRouter.post("/register", registerUser);
-userRouter.post("/login", loginUser);
+userRouter.post("/register", createUserDataValidator, registerUser);
+userRouter.post("/login", loginUserDataValidator, loginUser);
 userRouter.get("/users", verifyUserToken, getAllUsers);
 export default userRouter;
