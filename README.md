@@ -80,10 +80,14 @@ Commands
 |  `email`  | `string` | **Required**. Your Email   |
 |`password` | `string` | **Required**. Your Password|
 
-#### Get All Blogs
+#### Blogs API
 
 ```
-  GET /api/v1/blogs/
+  GET     /api/v1/blogs/
+  GET     /api/v1/blogs/:id
+  POST    /api/v1/blogs/
+  PUT     /api/v1/blogs/:id
+  DELETE  /api/v1/blogs/:id
 ```
 ## References
 
