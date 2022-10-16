@@ -90,7 +90,7 @@ Commands
 
 ## License
 
-[MIT](https://github.com/bhimrazy/express-app-with-docker-setup/blob/master/LICENSE)
+[MIT](https://github.com/bhimrazy/express-blog-api/blob/main/LICENSE)
 
 <!-- docker exec -it <container-id> bash -->
 <!--
