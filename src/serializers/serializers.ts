@@ -13,6 +13,9 @@ const blogFields: string[] = [
   "_id",
   "title",
   "description",
+  "image",
+  "tags",
+  "author",
   "createdAt",
   "updatedAt",
 ];

@@ -1,24 +1,22 @@
 import { Request, Response } from "express";
-import * as blogService from "../services/blogService";
+import { BlogService } from "../services/blogService";
 import { validationResult } from "express-validator";
 import { Serializer } from "../serializers/serializers";
 
-type Blog = {
-  _id: string;
-  title: string;
-  description: string;
-  created_at: string;
-};
+interface userRequest extends Request {
+  user?: any;
+}
+
 export const getAllBlogs = async (req: Request, res: Response) => {
   try {
-    const blogs = await blogService.getAllBlogs();
-    res.json({ data: Serializer.blogsSerializer(blogs), status: "success" });
+    const blogs = await BlogService.getAllBlogs();
+    res.json({ status: "success", data: Serializer.blogsSerializer(blogs) });
   } catch (err: any) {
-    res.status(500).json({ error: err?.message });
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
 
-export const createBlog = async (req: Request, res: Response) => {
+export const createBlog = async (req: userRequest, res: Response) => {
   try {
     const errors = validationResult(req);
     // if there is error then return Error
@@ -28,37 +26,45 @@ export const createBlog = async (req: Request, res: Response) => {
         errors: errors.array(),
       });
     }
-
-    const blog = await blogService.createBlog(req.body);
-    res.json({ data: Serializer.blogSerializer(blog), status: "success" });
+    req.body.author = req.user._id;
+    const blog = await BlogService.createBlog(req.body);
+    res.json({
+      status: "success",
+      message: "blog created successfully.",
+      data: Serializer.blogSerializer(blog),
+    });
   } catch (err: any) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
 
 export const getBlogById = async (req: Request, res: Response) => {
   try {
-    const blog = await blogService.getBlogById(req.params.id);
-    res.json({ data: Serializer.blogSerializer(blog), status: "success" });
+    const blog = await BlogService.getBlogById(req.params.id);
+    res.json({ status: "success", data: Serializer.blogSerializer(blog) });
   } catch (err: any) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
 
 export const updateBlog = async (req: Request, res: Response) => {
   try {
-    const blog = await blogService.updateBlog(req.params.id, req.body);
-    res.json({ data: blog, status: "success" });
+    const blog = await BlogService.updateBlog(req.params.id, req.body);
+    res.json({
+      status: "success",
+      message: "blog updated successfully.",
+      data: Serializer.blogSerializer(blog),
+    });
   } catch (err: any) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
 
 export const deleteBlog = async (req: Request, res: Response) => {
   try {
-    const blog = await blogService.deleteBlog(req.params.id);
-    res.json({ data: blog, status: "success" });
+    const blog = await BlogService.deleteBlog(req.params.id);
+    res.json({ status: "success", message: "blog deleted successfully." });
   } catch (err: any) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
