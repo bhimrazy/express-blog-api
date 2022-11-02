@@ -4,10 +4,10 @@ import { validationResult } from "express-validator";
 import { blogSerializer, blogsSerializer } from "../serializers/serializers";
 
 type Blog = {
-  _id: String;
-  title: String;
-  description: String;
-  created_at: String;
+  _id: string;
+  title: string;
+  description: string;
+  created_at: string;
 };
 export const getAllBlogs = async (req: Request, res: Response) => {
   try {

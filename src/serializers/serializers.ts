@@ -1,5 +1,5 @@
-const Serializer = (dict: any, fields: String[]) => {
-  let data = Object();
+const Serializer = (dict: any, fields: string[]) => {
+  const data = Object();
   fields.forEach((key: any) => {
     const k: string = key;
     const v: string = dict[key];
@@ -7,10 +7,10 @@ const Serializer = (dict: any, fields: String[]) => {
   });
   return data;
 };
-const userFields: String[] = ["name", "email"];
+const userFields: string[] = ["name", "email"];
 export const userSerializer = (user: any) => Serializer(user, userFields);
 
-const blogFields: String[] = [
+const blogFields: string[] = [
   "_id",
   "title",
   "description",
@@ -19,7 +19,7 @@ const blogFields: String[] = [
 ];
 export const blogSerializer = (blog: any) => Serializer(blog, blogFields);
 export const blogsSerializer = (blogs: any) => {
-  var data: any[] = [];
+  const data: any[] = [];
   blogs.forEach((blog: any) => {
     data.push(blogSerializer(blog));
   });

@@ -14,7 +14,6 @@ import { connectDB } from "./src/configs/db";
 import apiRouter from "./src/routes/api";
 // Constants
 const PORT = process.env.PORT || 3000;
-const HOST = "0.0.0.0";
 
 // Connect to database
 connectDB();

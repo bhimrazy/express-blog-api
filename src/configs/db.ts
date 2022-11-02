@@ -1,4 +1,3 @@
-import { ConnectOptions } from "mongodb";
 import mongoose from "mongoose";
 export const connectDB = async () => {
   await mongoose
