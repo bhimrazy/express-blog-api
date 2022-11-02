@@ -5,6 +5,8 @@ services:
     build: .
     ports:
       - 3000:3000
+    environment:
+      - DATABASE_URL=mongodb://mongo:27017/prod
     volumes:
       - ./:/code
   mongo:
