@@ -1,5 +1,4 @@
 import express from "express";
-const blogRouter = express.Router();
 import {
   getAllBlogs,
   createBlog,
@@ -12,6 +11,8 @@ import {
   createBlogDataValidator,
   updateBlogDataValidator,
 } from "../validators/blog.validator";
+
+const blogRouter = express.Router();
 
 blogRouter
   .route("/")
