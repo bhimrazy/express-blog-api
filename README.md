@@ -2,38 +2,44 @@
   <img height="400" width="auto" src="https://user-images.githubusercontent.com/46085301/196043714-8ac5ad0d-1286-4ab6-aa6b-c1e4cdccf3d0.png">
 </p>
   
-# A Blog REST API App using ExpressJs, MongoDB, NodeJs and Typescript.
+# A Blog REST API App using ExpressJs, MongoDB, NodeJs and Typescript
+
 This repo helps you to get started with ExpressJs, MongoDB, NodeJs and Typescript in docker Environment.
 
 ## Setup and Run Locally with or without using Docker
 
 Commands
 
-  ```bash
-      # clone github repo
-      $ git clone https://github.com/bhimrazy/express-blog-api
-      $ cd express-blog-api
-      $ cp .env.example .env
-      
-      # Run without using docker
-      # SET DATABASE_URL
-      $ npm install
-      $ npm run dev
-      
-      # Run with docker      
-      # start containers
-      $ docker-compose up -d
-      # start containers
-      $ docker-compose up -d
-      # stop containers
-      $ docker-compose down
-  ```
+```bash
+    # clone github repo
+    $ git clone https://github.com/bhimrazy/express-blog-api
+    $ cd express-blog-api
+    $ cp .env.example .env
+
+    # Run without using docker
+    # SET DATABASE_URL
+    $ npm install
+    $ npm run dev
+
+    # Run with docker
+    # start containers
+    $ docker-compose up -d
+    # start containers
+    $ docker-compose up -d
+    # stop containers
+    $ docker-compose down
+
+    # check logs of docker image
+    $ docker logs <CONTAINER_ID>
+```
+
 ## Directory Structure
+
 ```
 .
 ├── dist/                                # Build files
 ├── public/                              # Contains static files
-├── src/                                 # All 
+├── src/                                 # All
 │   ├── configs/                         # Contains all the configurations
 │   ├── models/                          # Contains all the database schema and models
 │   ├── services/                        # Contains all the services
@@ -63,11 +69,11 @@ Commands
   POST /api/v1/register
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-|  `name`   | `string` | **Required**. Your Name    |
-|  `email`  | `string` | **Required**. Your Email   |
-|`password` | `string` | **Required**. Your Password|
+| Parameter  | Type     | Description                 |
+| :--------- | :------- | :-------------------------- |
+| `name`     | `string` | **Required**. Your Name     |
+| `email`    | `string` | **Required**. Your Email    |
+| `password` | `string` | **Required**. Your Password |
 
 #### Login User
 
@@ -75,10 +81,10 @@ Commands
   POST /api/v1/login
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-|  `email`  | `string` | **Required**. Your Email   |
-|`password` | `string` | **Required**. Your Password|
+| Parameter  | Type     | Description                 |
+| :--------- | :------- | :-------------------------- |
+| `email`    | `string` | **Required**. Your Email    |
+| `password` | `string` | **Required**. Your Password |
 
 #### Blogs API
 
@@ -89,8 +95,8 @@ Commands
   PUT     /api/v1/blogs/:id
   DELETE  /api/v1/blogs/:id
 ```
-## References
 
+## References
 
 ## License
 
@@ -109,4 +115,3 @@ https://blog.appsignal.com/2022/08/17/build-a-crud-app-with-nodejs-and-mongodb.h
 https://blog.appsignal.com/2022/09/14/secure-your-nodejs-app-with-json-web-tokens.html
 https://jayeshchoudhary.hashnode.dev/how-to-easily-validate-request-data-using-express-validator-in-nodejs
  -->
-
