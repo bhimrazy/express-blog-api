@@ -8,5 +8,5 @@ apiRouter.get("/", (req: Request, res: Response) => {
   res.status(200).send({ message: "Welcome to your Express App API." });
 });
 apiRouter.use("/blogs", blogRouter);
-apiRouter.use("/", userRouter);
+apiRouter.use("/user", userRouter);
 export default apiRouter;

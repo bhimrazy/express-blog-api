@@ -25,12 +25,11 @@ export const createUserDataValidator = [
     .withMessage("Password is required")
     .isString()
     .withMessage("Password should be string")
-    .isLength({ min: 5 })
+    .isLength({ min: 8 })
     .withMessage("Password should be at least 5 characters"),
 ];
 
 export const loginUserDataValidator = [
-  body("name").exists().withMessage("Name is required"),
   body("email").optional().isEmail().withMessage("Provide valid email"),
   body("password")
     .exists()
