@@ -37,3 +37,8 @@ ps:
 .ONESHELL:
 serve:
 	npm run dev
+
+# test
+.ONESHELL:
+test:
+	npm run test
