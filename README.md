@@ -31,6 +31,9 @@ Commands
 
     # check logs of docker image
     $ docker logs <CONTAINER_ID>
+
+    # Run tests
+    $ npm run test
 ```
 
 ## Directory Structure
@@ -48,6 +51,7 @@ Commands
 │   ├── validators/                      # Contains all the request validators
 │   ├── serializers/                     # Contains all the serializers
 │   └── routes/                          # Contains all the routes
+├── tests/                               # Contains all the test files
 ├── tsconfig.json                        # Typescript Config
 ├── index.ts                             # Index file
 ├── package.json
@@ -56,6 +60,8 @@ Commands
 ```
 
 ## API Reference
+
+Postman Docs: https://documenter.getpostman.com/view/8091590/2s8YRnmXTd
 
 #### Get Home URL
 
