@@ -117,4 +117,8 @@ https://blog.appsignal.com/2022/08/17/build-a-crud-app-with-nodejs-and-mongodb.h
 https://blog.appsignal.com/2022/09/14/secure-your-nodejs-app-with-json-web-tokens.html
 https://jayeshchoudhary.hashnode.dev/how-to-easily-validate-request-data-using-express-validator-in-nodejs
 https://www.freecodecamp.org/news/how-to-make-input-validation-simple-and-clean-in-your-express-js-app-ea9b5ff5a8a7/
+
+
+https://github.com/dinushchathurya/nodejs-blog-api-with-authentication
+https://github.com/yassinjouao/instagram-clone-backend/
  -->
