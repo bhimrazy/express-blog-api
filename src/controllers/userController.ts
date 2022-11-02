@@ -1,11 +1,12 @@
 import { userService } from "../services/userService";
 import { Request, Response } from "express";
+import { Serializer } from "../serializers/serializers";
 
 export const UserController = {
   getAllUsers: async (req: Request, res: Response) => {
     try {
       const users = await userService.getAllUsers();
-      res.json({ status: "success", data: users });
+      res.json({ status: "success", data: Serializer.usersSerializer(users) });
     } catch (err: any) {
       res.status(500).json({ status: "error", message: err.message });
     }

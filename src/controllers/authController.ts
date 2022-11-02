@@ -4,7 +4,7 @@ import User from "../models/user";
 import { userService } from "../services/userService";
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
-import { userSerializer } from "../serializers/serializers";
+import { Serializer } from "../serializers/serializers";
 
 interface profileRequest extends Request {
   user?: any;
@@ -37,7 +37,7 @@ export const AuthController = {
       res.json({
         status: "success",
         message: "user created successfuly",
-        data: userSerializer(reg_user),
+        data: Serializer.userSerializer(reg_user),
       });
     } catch (err: any) {
       res.status(500).json({ status: "error", message: err.message });
@@ -85,7 +85,7 @@ export const AuthController = {
       );
       res.json({
         status: "success",
-        data: { token, user: userSerializer(user) },
+        data: { token, user: Serializer.userSerializer(user) },
       });
     } catch (err: any) {
       res.status(500).json({ status: "error", message: err.message });
@@ -99,7 +99,7 @@ export const AuthController = {
     });
     res.json({
       status: "success",
-      data: userSerializer(user),
+      data: Serializer.userSerializer(user),
     });
   },
 };

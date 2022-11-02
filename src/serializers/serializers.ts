@@ -1,4 +1,4 @@
-const Serializer = (dict: any, fields: string[]) => {
+const abstractSerializer = (dict: any, fields: string[]) => {
   const data = Object();
   fields.forEach((key: any) => {
     const k: string = key;
@@ -7,8 +7,7 @@ const Serializer = (dict: any, fields: string[]) => {
   });
   return data;
 };
-const userFields: string[] = ["name", "email"];
-export const userSerializer = (user: any) => Serializer(user, userFields);
+const userFields: string[] = ["_id", "name", "email", "role"];
 
 const blogFields: string[] = [
   "_id",
@@ -17,11 +16,22 @@ const blogFields: string[] = [
   "createdAt",
   "updatedAt",
 ];
-export const blogSerializer = (blog: any) => Serializer(blog, blogFields);
-export const blogsSerializer = (blogs: any) => {
-  const data: any[] = [];
-  blogs.forEach((blog: any) => {
-    data.push(blogSerializer(blog));
-  });
-  return data;
+
+export const Serializer = {
+  userSerializer: (user: any) => abstractSerializer(user, userFields),
+  usersSerializer: (users: any) => {
+    const data: any[] = [];
+    users.forEach((user: any) => {
+      data.push(Serializer.userSerializer(user));
+    });
+    return data;
+  },
+  blogSerializer: (blog: any) => abstractSerializer(blog, blogFields),
+  blogsSerializer: (blogs: any) => {
+    const data: any[] = [];
+    blogs.forEach((blog: any) => {
+      data.push(Serializer.blogSerializer(blog));
+    });
+    return data;
+  },
 };
