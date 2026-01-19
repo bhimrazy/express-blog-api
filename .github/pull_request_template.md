@@ -8,4 +8,4 @@ Fixes # (issue)
 
 ---
 
-_Make sure you had fun contributing!_ 🎉
+Make sure you had fun contributing!_ 🎉
