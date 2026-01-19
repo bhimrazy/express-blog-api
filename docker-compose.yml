@@ -1,26 +1,39 @@
-version: '3.7'
 services:
-  node:
-    restart: always
-    build: .
+  api:
+    build:
+      context: .
+      target: deps
+    volumes:
+      - .:/app
+      - /app/node_modules
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
-      - DATABASE_URL=mongodb://mongo:27017/prod
-    volumes:
-      - ./:/code
-  mongo:
-    image: mongo
-    ports:
-      - 27017:27017
-    volumes:
-      - mongodb:/data/db
-  mongo-express:
-    image: mongo-express
-    restart: always
+      - DATABASE_URL=postgres://dev:dev@db:5432/express_blog
+      - NODE_ENV=development
+      - PORT=3000
+      - HOST=0.0.0.0
+      - JWT_SECRET=dev-secret
+    command: pnpm run dev
     depends_on:
-      - mongo
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: express_blog
     ports:
-      - 8081:8081
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 volumes:
-  mongodb:
+  postgres_data:
