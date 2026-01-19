@@ -1,130 +1,117 @@
-<p align="center">
-  <img height="400" width="auto" src="https://user-images.githubusercontent.com/46085301/196043714-8ac5ad0d-1286-4ab6-aa6b-c1e4cdccf3d0.png">
-</p>
-  
-# A Blog REST API App using ExpressJs, MongoDB, NodeJs and Typescript
+# Express Blog API Template
 
-This repo helps you to get started with ExpressJs, MongoDB, NodeJs and Typescript in docker Environment.
+![CI](https://github.com/bhimrazy/express-blog-api/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/github/license/bhimrazy/express-blog-api)
+![Node](https://img.shields.io/node/v/express-blog-api)
 
-## Setup and Run Locally with or without using Docker
+A production-grade, reusable REST API template built with:
 
-Commands
+- **Runtime**: Node.js 22 + TypeScript 5.7 (Strict ESM)
+- **Framework**: Express 5.0
+- **Database**: PostgreSQL + Drizzle ORM
+- **Authentication**: JWT + Argon2
+- **Validation**: Zod
+- **Logging**: Pino (JSON structured logs)
+- **Testing**: Vitest (Unit + Integration)
+- **Tools**: Biome (Lint/Format), pnpm, Docker
 
-```bash
-    # clone github repo
-    $ git clone https://github.com/bhimrazy/express-blog-api
-    $ cd express-blog-api
-    $ cp .env.example .env
+## Features
 
-    # Run without using docker
-    # SET DATABASE_URL
-    $ npm install
-    $ npm run dev
+- 🏗 **Feature-Based Architecture**: Modular structure (Auth, User, Post)
+- 🔒 **Security First**: Helmet, CORS, strict validation, safe secrets
+- 🐳 **Docker Ready**: Multi-stage builds for optimized production images
+- 🧪 **Test Suites**: Pre-configured Vitest for unit and integration testing
+- ⚡ **Performance**: Fast startup with `tsx`, efficient builds with `pnpm`
 
-    # Run with docker
-    # start containers
-    $ docker-compose up -d
-    # start containers
-    $ docker-compose up -d
-    # stop containers
-    $ docker-compose down
+## Getting Started
 
-    # check logs of docker image
-    $ docker logs <CONTAINER_ID>
+### Prerequisites
 
-    # Run tests
-    $ npm run test
-```
+- Node.js 20+
+- pnpm 9+
+- Docker (optional, for DB)
 
-## Directory Structure
+### Installation
 
-```
-.
-├── dist/                                # Build files
-├── public/                              # Contains static files
-├── src/                                 # All
-│   ├── configs/                         # Contains all the configurations
-│   ├── models/                          # Contains all the database schema and models
-│   ├── services/                        # Contains all the services
-│   ├── controllers/                     # Contains all the controllers
-│   ├── middlewares/                     # Contains all the middlewares
-│   ├── validators/                      # Contains all the request validators
-│   ├── serializers/                     # Contains all the serializers
-│   └── routes/                          # Contains all the routes
-├── tests/                               # Contains all the test files
-├── tsconfig.json                        # Typescript Config
-├── index.ts                             # Index file
-├── package.json
-├── package-lock.json
-└── README.md
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bhimrazy/express-blog-api.git
+   cd express-blog-api
+   ```
 
-## API Reference
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-Postman Docs: https://documenter.getpostman.com/view/8091590/2s8YRnmXTd
+3. Setup environment:
+   ```bash
+   cp .env.example .env
+   ```
 
-#### Get Home URL
+4. Start Database (Quick Start):
+   ```bash
+   docker-compose up -d db
+   ```
 
-```
-  GET /api/v1/
-```
+5. Run Migrations:
+   ```bash
+   pnpm db:push
+   ```
 
-#### Register User
+6. Start Server:
+   ```bash
+   pnpm dev
+   ```
 
-```
-  POST /api/v1/register
-```
+## Scripts
 
-| Parameter  | Type     | Description                 |
-| :--------- | :------- | :-------------------------- |
-| `name`     | `string` | **Required**. Your Name     |
-| `email`    | `string` | **Required**. Your Email    |
-| `password` | `string` | **Required**. Your Password |
+- `pnpm dev` - Start development server with watch mode
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm test` - Run all tests
+- `pnpm lint` - Check for linting errors
+- `pnpm format` - Auto-format code
+- `pnpm db:studio` - Open Drizzle Studio to view data
 
-#### Login User
+## Project Structure
 
 ```
-  POST /api/v1/login
+src/
+├── common/             # Shared utilities & middleware
+│   ├── middleware/
+│   ├── utils/
+│   └── types/
+├── modules/            # Feature modules
+│   ├── auth/           # Authentication logic
+│   ├── user/           # User management
+│   └── post/           # Blog posts
+├── db/                 # Database schema & connection
+├── app.ts              # App configuration
+└── server.ts           # Entry point
 ```
 
-| Parameter  | Type     | Description                 |
-| :--------- | :------- | :-------------------------- |
-| `email`    | `string` | **Required**. Your Email    |
-| `password` | `string` | **Required**. Your Password |
+## 🧪 Testing
 
-#### Blogs API
+The project uses **Vitest** with a scalable structure:
 
-```
-  GET     /api/v1/blogs/
-  GET     /api/v1/blogs/:id
-  POST    /api/v1/blogs/
-  PUT     /api/v1/blogs/:id
-  DELETE  /api/v1/blogs/:id
-```
+- **Unit Tests**: Co-located in `src/modules/*/__tests__/*.test.ts`.
+- **Integration**: `tests/integration/*.test.ts` (API/DB interactions).
+- **E2E**: `tests/e2e/*.test.ts` (Full user flows).
 
-## References
+## 📏 Code Standards
+
+- **File Naming**: strictly `kebab-case` (e.g., `user.controller.ts`, `auth-service.ts`).
+- **Imports**: Use `@/` alias for src (e.g., `import { db } from '@/db'`).
+- **Linting**: Biome is configured for strict type checking and formatting.
+
+## API Documentation
+
+- `POST /api/auth/register` - Create account
+- `POST /api/auth/login` - Login
+- `GET /api/users/me` - Get current user profile
+- `GET /api/posts` - List posts
 
 ## License
 
-[MIT](https://github.com/bhimrazy/express-blog-api/blob/main/LICENSE)
-
-<!-- docker exec -it <container-id> bash -->
-<!--
-mongosh
-show dbs
-show users
-use db_name
-mongo --port 27017 -u username -p password --authenticationDatabase mydbone
-express-jsdoc-swagger
-
-https://www.bezkoder.com/docker-compose-nodejs-mongodb/
-
-https://blog.appsignal.com/2022/08/17/build-a-crud-app-with-nodejs-and-mongodb.html
-https://blog.appsignal.com/2022/09/14/secure-your-nodejs-app-with-json-web-tokens.html
-https://jayeshchoudhary.hashnode.dev/how-to-easily-validate-request-data-using-express-validator-in-nodejs
-https://www.freecodecamp.org/news/how-to-make-input-validation-simple-and-clean-in-your-express-js-app-ea9b5ff5a8a7/
-
-
-https://github.com/dinushchathurya/nodejs-blog-api-with-authentication
-https://github.com/yassinjouao/instagram-clone-backend/
- -->
+MIT

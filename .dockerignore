@@ -1,2 +1,29 @@
-node_modules
-npm-debug.log
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Source files (only need dist in container)
+src/
+tests/
+research/
+docs/
+
+# Development files
+*.md
+*.log
+.env*
+!.env.example
+.git/
+.github/
+.vscode/
+.idea/
+
+# Build artifacts not needed
+coverage/
+*.tsbuildinfo
+
+# Config files not needed in production
+biome.json
+vitest.config.ts
+drizzle.config.ts
+tsconfig.json
